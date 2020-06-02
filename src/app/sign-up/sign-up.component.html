@@ -4,46 +4,69 @@
             <div class="logo mb-2">
                 <img src="assets/img/logo.png" class="img-fluid" alt="Application Logo">
             </div>
-            <mdb-card class="mb-2">
-                <mdb-card-body>
-                    <form>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <mdb-card class="mb-2">
+                    <mdb-card-body>
                         <div class="md-form">
-                            <input mdbInput type="email" id="materialFormSubscriptionEmailEx" class="form-control">
+                            <input mdbInput type="email" formControlName="email" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }">
                             <label for="materialFormSubscriptionEmailEx">Email address</label>
+                            <div *ngIf="submitted && registerForm.controls.email.errors" class="invalid-feedback">
+                                <div *ngIf="registerForm.controls.email.errors.required">Email is required</div>
+                            </div>
                         </div>
                         <div class="md-form">
-                            <input mdbInput type="password" id="materialFormSubscriptionPasswordEx" class="form-control">
-                            <label for="materialFormSubscriptionPasswordEx">Password</label>
+                            <input mdbInput type="password" formControlName="password" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }">
+                            <label for="materialFormSubscriptionPasswordEx">Password</label>                            
+                            <div *ngIf="submitted && registerForm.controls.password.errors" class="invalid-feedback">
+                                <div *ngIf="registerForm.controls.password.errors.required">Password is required</div>
+                                <div *ngIf="registerForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
                         </div>
                         <div class="md-form">
-                            <input mdbInput type="text" id="materialFormSubscriptionFirstNameEx" class="form-control">
+                            <input mdbInput type="text" formControlName="firstName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && registerForm.controls.firstName.errors }">
                             <label for="materialFormSubscriptionFirstNameEx">First Name</label>
+                            <div *ngIf="submitted && registerForm.controls.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="registerForm.controls.firstName.errors.required">First Name is required</div>
+                            </div>
                         </div>
                         <div class="md-form">
-                            <input mdbInput type="text" id="materialFormSubscriptionLastNameEx" class="form-control">
+                            <input mdbInput type="text" formControlName="lastName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && registerForm.controls.lastName.errors }">
                             <label for="materialFormSubscriptionLastNameEx">Last Name</label>
+                            <div *ngIf="submitted && registerForm.controls.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="registerForm.controls.lastName.errors.required">Last Name is required</div>
+                            </div>
                         </div>
 
-                        <p>Sign up as:</p>
+                        <p [ngClass]="{ 'is-invalid': submitted && registerForm.controls.role.errors }">
+                            Sign up as:
+                        </p>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="signUpAsStudent" name="materialExampleRadios" mdbInput>
+                            <input mdbInput type="radio" class="form-check-input" id="signUpAsStudent" formControlName="role" value="student">
                             <label class="form-check-label" for="signUpAsStudent">Student</label>
                         </div>
 
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="signUpAsInstructor" name="materialExampleRadios" mdbInput>
+                            <input mdbInput type="radio" class="form-check-input" id="signUpAsInstructor" formControlName="role" value="instructor">
                             <label class="form-check-label" for="signUpAsInstructor">Instructor</label>
                         </div>
 
-                    </form>
-                </mdb-card-body>
-            </mdb-card>
+                        <div *ngIf="submitted && registerForm.controls.role.errors" class="invalid-feedback">
+                            <div *ngIf="registerForm.controls.role.errors.required">Role is required</div>
+                        </div>
+                    </mdb-card-body>
+                </mdb-card>
 
-            <div class="text-center">
-                <a href="#" mdbBtn class="btn btn-default btn-sm mb-3 btn-block">Register</a>
-                <span class="small-link">Already have an account? </span>
-                <a href="login.html" class="small-link">Login</a>
-            </div>
+                <div class="text-center">
+                    <button href="#" mdbBtn type="submit" class="btn btn-default btn-sm mb-3 btn-block">Register</button>
+                    <span class="small-link">Already have an account? </span>
+                    <a href="login.html" class="small-link">Login</a>
+                </div>
+                
+            </form>
         </div>
     </div>
 </div>
