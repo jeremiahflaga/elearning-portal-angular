@@ -1,0 +1,13 @@
+<div class="card mb-4">
+  <div class="view overlay">
+      <!-- <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap"> -->
+      <img class="img-fluid" [src]="course.image" alt="Card image cap">
+      <a href="course-detail.html">
+          <div class="mask rgba-white-slight"></div>
+      </a>
+  </div>
+  <div class="card-body">
+      <h4 class="card-title">{{ course.title }}</h4>
+      <p class="card-text">{{ course.description }}</p>
+  </div>
+</div>

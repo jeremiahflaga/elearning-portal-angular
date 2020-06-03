@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CourseCardComponent } from './course-card/course-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    CourseCardComponent
   ],
   imports: [
     BrowserModule,
