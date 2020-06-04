@@ -1,0 +1,4 @@
+
+<div *ngFor="let group of coursesGroupedByThree" class="card-deck">
+  <app-course-card *ngFor="let item of group"  [course]="item"></app-course-card>
+</div>  
