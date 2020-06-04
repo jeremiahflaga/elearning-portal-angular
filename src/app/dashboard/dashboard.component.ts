@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
+import { CourseService } from '../course.service';
+import { first } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +17,8 @@ export class DashboardComponent implements OnInit {
     description: 'Course One Description',
     image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAYCAIAAABr4HqSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAnSURBVEhLY3gro0JFNGoc+WjUOPLRqHHko1HjyEejxpGPRpBxMioAgGndz9vd5h8AAAAASUVORK5CYII='
   };
-  courses: Course[] = [
+  courses: Course[] = [];
+  coursesData: Course[] = [
     this.courseOne,
     {
       id: '2',
@@ -35,10 +39,23 @@ export class DashboardComponent implements OnInit {
       image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAYCAIAAABr4HqSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAnSURBVEhLY3gro0JFNGoc+WjUOPLRqHHko1HjyEejxpGPRpBxMioAgGndz9vd5h8AAAAASUVORK5CYII='
     }
   ];
+  courses$: Observable<Course[]>;
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
+    // this.courses$ = of(this.courses).pipe(first());
+    // this.courses$ = this.courseService.getCourses().pipe(first());
+    this.courseService.getCourses()
+    .pipe(first())
+    .subscribe(
+        data => {
+          console.log('get courses successful');
+          this.courses = data.data;
+        },
+        error => {
+          console.log('get courses error');
+        });
   }
 
 }

@@ -17,83 +17,12 @@
                   </select>
               </div>
           </div>
-          <app-course-card-deck [courses]="courses"></app-course-card-deck>
-          <div class="card-deck">
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Angular 5 Training</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Getting Started with PHP</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Set up backend with Node.js</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="card-deck">
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Learn Pure functions</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Javascript Closure</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
-              <div class="card mb-4">
-                  <div class="view overlay">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-                      <a href="course-detail.html">
-                          <div class="mask rgba-white-slight"></div>
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Master the Frontend</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-              </div>
+          <!-- <app-course-card-deck [courses]="courses$ | async"></app-course-card-deck> -->
+          <!-- <app-course-card-deck [courses]="courses"></app-course-card-deck> -->
+          
+<div *ngFor="let item of courses" class="card-deck">
+  <app-course-card [course]="item"></app-course-card>
+</div>  
 
-          </div>
           <!--Card group-->
-      </div>
+      </div>S

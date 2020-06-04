@@ -7,10 +7,10 @@ import { Course } from '../course';
   styleUrls: ['./course-card-deck.component.scss']
 })
 export class CourseCardDeckComponent implements OnInit {
-
-  constructor() { }
   @Input() courses: Course[];
   coursesGroupedByThree: Course[][];
+
+  constructor() { }
 
   private static groupByThree(arr: Course[])
   {
