@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseCardDeckComponent } from './course-card-deck/course-card-deck.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CourseCardDeckComponent } from './course-card-deck/course-card-deck.com
     LoginComponent,
     DashboardComponent,
     CourseCardComponent,
-    CourseCardDeckComponent
+    CourseCardDeckComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+
+        <div class="container mt-5">
+          <div class="row">
+              <div class="col-md-12">
+                <h4 class="mb-3">{{ (course$ | async)?.title }}</h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <img class="img-fluid mb-3" [src]="(course$ | async)?.image" alt="Card image cap">
+                  <p>
+                    {{ (course$ | async)?.description }}
+                  </p>
+                  <button disabled type="button" class="btn btn-default btn-sm mb-3">Enroll</button>
+                  <p class="text-muted text-sm">You are currently enrolled in this course.</p>
+              </div>
+              <div class="col-md-8">
+                  <h6 class="mb-4">Course Modules</h6>
+                  <table class="table table-hover table-responsive-md">
+                      <tbody>
+                          <tr *ngFor="let module of (course$ | async)?.modules">
+                              <td>
+                                  <i class="fa fa-check" aria-hidden="true"></i>
+                                  <a href="module-detail.html">{{ module.title }}</a>
+                              </td>
+                              <td class="text-right">Juni Brosas</td>
+                              <td class="text-right">2/26/2018</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>

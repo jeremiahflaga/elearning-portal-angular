@@ -16,10 +16,10 @@ export class CourseCardDeckComponent implements OnInit, OnChanges {
   {
     // append empty Courses if last row has less than three items (might need refactoring later)
     if (arr.length % 3 === 1) {
-      arr.push({id: '', title: '', description: '', image: ''});
-      arr.push({id: '', title: '', description: '', image: ''});
+      arr.push({_id: '', title: '', description: '', image: ''});
+      arr.push({_id: '', title: '', description: '', image: ''});
     } else if (arr.length % 3 === 2) {
-      arr.push({id: '', title: '', description: '', image: ''});
+      arr.push({_id: '', title: '', description: '', image: ''});
     }
     const res = [];
     for (let i = 0; i < arr.length; i = i + 3) {
