@@ -1,22 +1,21 @@
 
-        <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-                  <h4 class="title-sting">All Courses</h4>
-              </div>
-              <div class="col-md-3">
-                  <div class="md-form">
-                      <input type="text" id="inputIconEx1" class="form-control">
-                      <label for="inputIconEx1">Search</label>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <select class="browser-default custom-select">
-                      <option selected>Show all subjects</option>
-                      <option value="1">Show completed subjects</option>
-                  </select>
-              </div>
-          </div>
-          <!-- <app-course-card-deck [courses]="courses$ | async"></app-course-card-deck> -->
-          <app-course-card-deck [courses]="courses"></app-course-card-deck>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="title-sting">All Courses</h4>
+        </div>
+        <div class="col-md-3">
+            <div class="md-form">
+                <input type="text" id="inputIconEx1" class="form-control">
+                <label for="inputIconEx1">Search</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select class="browser-default custom-select">
+                <option selected>Show all subjects</option>
+                <option value="1">Show completed subjects</option>
+            </select>
+        </div>
+    </div>
+    <app-course-card-deck [courses]="(courses$ | async).data"></app-course-card-deck>
 </div>

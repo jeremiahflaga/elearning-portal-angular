@@ -1,6 +1,5 @@
 
   <div class="view overlay">
-      <!-- <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap"> -->
       <img class="img-fluid" [src]="course.image" alt="Card image cap">
       <a [routerLink]="['/course-details', course._id]">
           <div class="mask rgba-white-slight"></div>
@@ -9,5 +8,4 @@
   <div class="card-body">
       <h4 class="card-title">{{ course.title }}</h4>
       <p class="card-text">{{ course.description }}</p>
-      <p class="card-text">{{ course._id }}</p>
   </div>
