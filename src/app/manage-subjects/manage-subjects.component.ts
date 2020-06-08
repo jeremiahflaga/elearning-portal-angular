@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, concatMap, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-subjects',
@@ -11,6 +12,7 @@ import { first } from 'rxjs/operators';
 export class ManageSubjectsComponent implements OnInit {
   subjectForm: FormGroup;
   submitted = false;
+  subjectsData$: Observable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,6 +23,8 @@ export class ManageSubjectsComponent implements OnInit {
     this.subjectForm = this.formBuilder.group({
         title: ['', Validators.required]
     });
+
+    this.subjectsData$ = this.courseService.getSubjects();
   }
 
   onSubmit() {
@@ -30,15 +34,10 @@ export class ManageSubjectsComponent implements OnInit {
       return;
     }
 
-    this.courseService.addSubject(this.subjectForm.controls.title.value)
-    .pipe(first())
-    .subscribe(
-        data => {
-          console.log('add subject successful');
-          this.submitted = true;
-        },
-        error => {
-          console.log('add subject error');
-        });
+    this.subjectsData$ = this.courseService.addSubject(this.subjectForm.controls.title.value)
+      .pipe(
+        concatMap(() => this.courseService.getSubjects()),
+        finalize(() => this.submitted = false)
+      );
   }
 }

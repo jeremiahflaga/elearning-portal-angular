@@ -31,6 +31,15 @@ export class CourseService {
     });
   }
 
+  getSubjects(): Observable<any> {
+    return this.http.get('http://localhost:3030/subjects/', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.currentUser.accessToken}`,
+      }),
+    });
+  }
+
   addSubject(subject: string): Observable<any> {
     return this.http.post(
       'http://localhost:3030/subjects/',

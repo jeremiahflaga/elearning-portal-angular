@@ -30,12 +30,12 @@
       <table class="table table-hover table-responsive-md">
         <tbody>
           <!---->
-          <tr class="ng-star-inserted">
+          <tr *ngFor="let subject of (subjectsData$ | async).data" class="ng-star-inserted">
             <td>
               <i aria-hidden="true" class="fa fa-check"></i>
-              <a href="/cms/subject/programming-subject">Programming Subject</a>
+              <a href="/cms/subject/programming-subject">{{ subject.title }}</a>
             </td>
-            <td class="text-right">10 Courses</td>
+            <td class="text-right">{{ subject.courses.length }}</td>
             <td class="text-right dropright">
               <div
                 aria-expanded="true"
