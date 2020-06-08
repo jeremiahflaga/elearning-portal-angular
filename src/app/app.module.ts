@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseCardDeckComponent } from './course-card-deck/course-card-deck.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { ManageSubjectsComponent } from './manage-subjects/manage-subjects.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     DashboardComponent,
     CourseCardComponent,
     CourseCardDeckComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    ManageSubjectsComponent
   ],
   imports: [
     BrowserModule,

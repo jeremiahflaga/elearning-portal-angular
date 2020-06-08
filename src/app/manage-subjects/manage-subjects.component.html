@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="md-form">
+              <input mdbInput [ngClass]="{ 'is-invalid': submitted && subjectForm.controls.title.errors }"
+                class="form-control"
+                formControlName="title"
+                id="subject-title"
+                type="text"
+              />
+              <label for="subject-title" class="">Subject Name</label>
+              <div *ngIf="submitted && subjectForm.controls.title.errors" class="invalid-feedback">
+                <div *ngIf="subjectForm.controls.title.errors.required">Title is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 with-plain-btn add-btn-div">
+            <button mdbBtn class="btn btn-primary btn-sm" type="submit">
+              <i class="fa fa-plus mr-1"></i> Add Subject
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h6 class="mb-4 mt-4">Subjects</h6>
+      <table class="table table-hover table-responsive-md">
+        <tbody>
+          <!---->
+          <tr class="ng-star-inserted">
+            <td>
+              <i aria-hidden="true" class="fa fa-check"></i>
+              <a href="/cms/subject/programming-subject">Programming Subject</a>
+            </td>
+            <td class="text-right">10 Courses</td>
+            <td class="text-right dropright">
+              <div
+                aria-expanded="true"
+                aria-haspopup="true"
+                class="btn-icon-dropdown-toggle"
+                data-toggle="dropdown"
+                id="tableDropdownLink-1"
+              >
+                <i aria-hidden="true" class="fa fa-ellipsis-v"></i>
+                <div
+                  aria-labelledby="tableDropdownLink-1"
+                  class="dropdown-menu dropdown-menu-right"
+                >
+                  <a
+                    class="dropdown-item"
+                    href="/cms/subject/programming-subject"
+                    >Edit</a
+                  ><a class="dropdown-item">Remove</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
