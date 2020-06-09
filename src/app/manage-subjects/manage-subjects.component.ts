@@ -43,6 +43,9 @@ export class ManageSubjectsComponent implements OnInit {
       );
   }
 
+  // https://angular.io/guide/template-syntax#ngfor-with-trackby
+  trackBySubjects(index: number, subject: any): number { return subject._id; }
+
   onSubmit() {
     this.submitted = true;
 

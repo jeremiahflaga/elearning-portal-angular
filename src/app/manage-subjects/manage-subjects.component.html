@@ -30,7 +30,7 @@
       <table class="table table-hover table-responsive-md">
         <tbody>
           <!---->
-          <tr *ngFor="let subject of (subjectsData$ | async).data" class="ng-star-inserted">
+          <tr *ngFor="let subject of (subjectsData$ | async).data; trackBy: trackBySubjects" class="ng-star-inserted">
             <td>
               <i aria-hidden="true" class="fa fa-check"></i>
               <a href="/cms/subject/programming-subject">{{ subject.title }}</a>
