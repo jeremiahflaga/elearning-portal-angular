@@ -13,6 +13,7 @@ export class ManageSubjectsComponent implements OnInit {
   subjectForm: FormGroup;
   submitted = false;
   subjectsData$: Observable<any>;
+  selectedSubjectIdToRemove: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +26,21 @@ export class ManageSubjectsComponent implements OnInit {
     });
 
     this.subjectsData$ = this.courseService.getSubjects();
+  }
+
+  selectSubjectToRemove(subjectToRemove: any) {
+    this.selectedSubjectIdToRemove = subjectToRemove._id;
+  }
+
+  unselectSubjectToRemove() {
+    this.selectedSubjectIdToRemove = null;
+  }
+
+  removeSelectedSubject(): void {
+    this.subjectsData$ = this.courseService.removeSubject(this.selectedSubjectIdToRemove)
+      .pipe(
+        concatMap(() => this.courseService.getSubjects())
+      );
   }
 
   onSubmit() {

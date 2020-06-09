@@ -54,4 +54,16 @@ export class CourseService {
       }
     );
   }
+
+  removeSubject(subjectId: string): Observable<any> {
+    return this.http.delete(
+      `http://localhost:3030/subjects/${subjectId}`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.currentUser.accessToken}`,
+        }),
+      }
+    );
+  }
 }

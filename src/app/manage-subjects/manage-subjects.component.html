@@ -37,23 +37,13 @@
             </td>
             <td class="text-right">{{ subject.courses.length }}</td>
             <td class="text-right dropright">
-              <div
-                aria-expanded="true"
-                aria-haspopup="true"
-                class="btn-icon-dropdown-toggle"
-                data-toggle="dropdown"
-                id="tableDropdownLink-1"
-              >
-                <i aria-hidden="true" class="fa fa-ellipsis-v"></i>
-                <div
-                  aria-labelledby="tableDropdownLink-1"
-                  class="dropdown-menu dropdown-menu-right"
-                >
-                  <a
-                    class="dropdown-item"
-                    href="/cms/subject/programming-subject"
-                    >Edit</a
-                  ><a class="dropdown-item">Remove</a>
+              <!-- Angular Bootstrap Dropdowns: https://mdbootstrap.com/docs/angular/components/dropdowns/ -->
+              <div class="btn-group mx-4" mdbDropdown>
+                <i fas classInside="dropdown-toggle" mdbDropdownToggle class="waves-effect"
+                  mdbWavesEffect aria-hidden="true" class="fa fa-ellipsis-v"></i>
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item" href="#">Edit</a>
+                  <a class="dropdown-item" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" (click)="selectSubjectToRemove(subject)">Remove</a>
                 </div>
               </div>
             </td>
@@ -61,5 +51,33 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+<!-- Angular Bootstrap Modal examples & templates: https://mdbootstrap.com/docs/angular/modals/additional/ -->
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="frame.hide()" (click)="removeSelectedSubject()">Yes</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" 
+          (click)="frame.hide()" (click)="unselectSubjectToRemove()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
   </div>
 </div>
