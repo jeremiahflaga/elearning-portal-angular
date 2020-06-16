@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { DashboardComponent } from './modules/student-dashboard/dashboard/dashboard.component';
 import { CourseDetailsComponent } from './modules/student-dashboard/course-details/course-details.component';

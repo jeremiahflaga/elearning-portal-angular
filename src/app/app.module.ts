@@ -7,7 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { DashboardComponent } from './modules/student-dashboard/dashboard/dashboard.component';
 import { CourseCardComponent } from './modules/student-dashboard/course-card/course-card.component';
