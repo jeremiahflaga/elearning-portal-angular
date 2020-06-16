@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { ManageSubjectsComponent } from './manage-subjects/manage-subjects.component';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { DashboardComponent } from './modules/student-dashboard/dashboard/dashboard.component';
+import { CourseDetailsComponent } from './modules/student-dashboard/course-details/course-details.component';
+import { ManageSubjectsComponent } from './modules/cms/manage-subjects/manage-subjects.component';
 
 
 const routes: Routes = [

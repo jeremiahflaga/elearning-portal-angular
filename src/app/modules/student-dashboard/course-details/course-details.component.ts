@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Course } from '../course';
+import { Course } from '../../../course';
 import { switchMap, first } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { CourseService } from '../course.service';
+import { CourseService } from '../../../course.service';
 import { Observable } from 'rxjs';
 
 @Component({

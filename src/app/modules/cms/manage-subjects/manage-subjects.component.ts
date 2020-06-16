@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
+import { CourseService } from '../../../course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first, concatMap, finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';

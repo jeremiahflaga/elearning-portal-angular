@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
-import { Course } from '../course';
+import { Course } from '../../../course';
 
 @Component({
   selector: 'app-course-card-deck',
