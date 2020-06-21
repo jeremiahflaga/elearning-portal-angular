@@ -5,14 +5,18 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { DashboardComponent } from './modules/student-dashboard/dashboard/dashboard.component';
 import { CourseDetailsComponent } from './modules/student-dashboard/course-details/course-details.component';
 import { ManageSubjectsComponent } from './modules/cms/manage-subjects/manage-subjects.component';
+import { AuthGuard } from './auth-guard';
 
 
 const routes: Routes = [
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'course-details/:id', component: CourseDetailsComponent },
-  { path: 'cms', component: ManageSubjectsComponent },
+  { path: 'course-details/:id', component: CourseDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'cms', component: ManageSubjectsComponent, canActivate: [AuthGuard] },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

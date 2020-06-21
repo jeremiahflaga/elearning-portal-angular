@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthService } from '../../../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,17 @@ import { AuthService } from '../../../auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  returnUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+      // get return url from route parameters or default to '/'
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -37,6 +44,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
         data => {
           console.log('login successful');
+          this.router.navigate([this.returnUrl]);
         },
         error => {
           console.log('login error');
