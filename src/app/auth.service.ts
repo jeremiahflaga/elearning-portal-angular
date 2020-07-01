@@ -15,7 +15,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
 
-
   // TODO: transfer to UserService
   register(user: User) {
         return this.http.post('http://localhost:3030/users/', user);
@@ -29,5 +28,9 @@ export class AuthService {
             // this.currentUserSubject.next(user);
             return user;
         }));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
   }
 }

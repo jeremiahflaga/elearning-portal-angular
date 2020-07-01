@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
+import { User } from './shared/models/user';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +11,26 @@ import { Router, NavigationStart } from '@angular/router';
 export class AppComponent {
   title = 'elearning';
   showHeaderAndFooter = false;
+  currentUser: User;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authenticationService: AuthService
+    ) {
     // on route change to '/login', set the variable showHead to false
-      router.events.forEach((event) => {
-        if (event instanceof NavigationStart) {
-          if (event['url'] === '/login' || event['url'] === '/sign-up' ) {
-            this.showHeaderAndFooter = false;
-          } else {
-            this.showHeaderAndFooter = true;
-          }
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'].startsWith('/login') || event['url'].startsWith('/sign-up')) {
+          this.showHeaderAndFooter = false;
+        } else {
+          this.showHeaderAndFooter = true;
         }
-      });
-    }
+      }
+    });
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }
