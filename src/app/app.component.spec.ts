@@ -2,6 +2,23 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
+// Mocking localStorage: https://medium.com/@armno/til-mocking-localstorage-and-sessionstorage-in-angular-unit-tests-a765abdc9d87
+beforeEach(() => {
+  const store = { currentUser: '{ "accessToken": "" }' };
+  const mockLocalStorage = {
+    getItem: (key: string): string => {
+      return key in store ? store[key] : null;
+    },
+    setItem: (key: string, value: string) => {
+      store[key] = `${value}`;
+    }
+  };
+  spyOn(localStorage, 'getItem')
+    .and.callFake(mockLocalStorage.getItem);
+  spyOn(localStorage, 'setItem')
+    .and.callFake(mockLocalStorage.setItem);
+});
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
