@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { CourseService } from 'src/app/course.service';
+import { By } from '@angular/platform-browser';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -28,6 +29,11 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display an All Courses h4 tag', () => {
+    const h4Elem = fixture.debugElement.query(By.css('h4'));
+    expect(h4Elem.nativeElement.textContent).toBe('All Courses');
   });
 });
 
