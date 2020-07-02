@@ -7,7 +7,7 @@ import { Course } from '../../../course';
   styleUrls: ['./course-card.component.scss']
 })
 export class CourseCardComponent implements OnInit {
-  @Input() course: Course;
+  @Input() course: Course = Course.Null;
 
   constructor() { }
 
