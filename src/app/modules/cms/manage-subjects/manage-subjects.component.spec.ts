@@ -4,6 +4,8 @@ import { ManageSubjectsComponent } from './manage-subjects.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { CourseService } from 'src/app/course.service';
+import { Observable, of } from 'rxjs';
 
 describe('ManageSubjectsComponent', () => {
   let component: ManageSubjectsComponent;
@@ -16,6 +18,9 @@ describe('ManageSubjectsComponent', () => {
         MDBBootstrapModule.forRoot(),
         HttpClientModule,
         ReactiveFormsModule
+      ],
+      providers: [
+        { provide: CourseService, useClass: CourseServiceStub }
       ]
     })
     .compileComponents();
@@ -31,3 +36,9 @@ describe('ManageSubjectsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class CourseServiceStub {
+  getSubjects(): Observable<any> {
+    return of({ data: []});
+  }
+}
