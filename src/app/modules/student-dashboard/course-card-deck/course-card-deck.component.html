@@ -1,6 +1,8 @@
 
 <div *ngFor="let group of coursesGroupedByThree" class="card-deck">
   <ng-container *ngFor="let item of group">
-    <app-course-card [course]="item" class="card mb-4" [ngClass]="item._id !== '' ? 'visible' : 'invisible'"></app-course-card>
+    <ng-container *ngIf="item._id !== ''">
+      <app-course-card [course]="item" class="card mb-4"></app-course-card>
+    </ng-container>
   </ng-container>
 </div>

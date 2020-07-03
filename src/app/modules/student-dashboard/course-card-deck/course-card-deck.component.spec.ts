@@ -2,14 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseCardDeckComponent } from './course-card-deck.component';
 import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { Course } from 'src/app/course';
 
 describe('CourseCardDeckComponent', () => {
   let component: CourseCardDeckComponent;
   let fixture: ComponentFixture<CourseCardDeckComponent>;
 
+  let testHostComponent: TestHostComponent;
+  let testHostFixture: ComponentFixture<TestHostComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseCardDeckComponent ]
+      declarations: [ CourseCardDeckComponent, TestHostComponent ]
     })
     .compileComponents();
   }));
@@ -18,6 +23,13 @@ describe('CourseCardDeckComponent', () => {
     fixture = TestBed.createComponent(CourseCardDeckComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  // https://medium.com/better-programming/testing-angular-components-with-input-3bd6c07cfaf6
+  beforeEach(() => {
+    testHostFixture = TestBed.createComponent(TestHostComponent);
+    testHostComponent = testHostFixture.componentInstance;
+    testHostFixture.detectChanges();
   });
 
   it('should create', () => {
@@ -30,9 +42,28 @@ describe('CourseCardDeckComponent', () => {
   });
 
   it('should show one list item when one course is given', () => {
-    component.coursesGroupedByThree = [[{_id: '1', title: '', description: '', image: '', modules: []}]];
-    fixture.detectChanges();
-    const courseCards = fixture.debugElement.queryAll(By.css('app-course-card'));
+    testHostComponent.courses = [{_id: '1', title: '', description: '', image: '', modules: []}];
+    testHostFixture.detectChanges();
+    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card'));
     expect(courseCards.length).toBe(1);
   });
+
+  it('should show five items when five courses are given', () => {
+    const courses = [];
+    for (let index = 0; index < 5; index++) {
+      courses.push({_id: index.toString(), title: '', description: '', image: '', modules: []});
+    }
+    testHostComponent.courses = courses;
+    testHostFixture.detectChanges();
+    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card'));
+    expect(courseCards.length).toBe(5);
+  });
+
+  @Component({
+    selector: `app-test-host-component`,
+    template: `<app-course-card-deck [courses]="courses"></app-course-card-deck>`
+  })
+  class TestHostComponent {
+    courses: Course[] = [];
+  }
 });
