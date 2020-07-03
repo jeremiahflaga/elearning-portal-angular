@@ -1,6 +1,10 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth.service';
+import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 // Mocking localStorage: https://medium.com/@armno/til-mocking-localstorage-and-sessionstorage-in-angular-unit-tests-a765abdc9d87
 beforeEach(() => {
@@ -20,33 +24,57 @@ beforeEach(() => {
 });
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes([
+          { path: 'cms', component: DummyComponent }
+        ])
       ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: AuthService, useClass: AuthServiceStub }
+      ]
     }).compileComponents();
   }));
 
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    component.showHeaderAndFooter = true;
+    fixture.detectChanges();
+  });
 
-  // it(`should have as title 'elearning'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app.title).toEqual('elearning');
-  // });
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('.content span').textContent).toContain('elearning app is running!');
-  // });
+  it(`should have as title 'elearning'`, () => {
+    expect(component.title).toEqual('elearning');
+  });
+
+  it('should have a button for Manage Subjects', () => {
+    const aElems = fixture.debugElement.queryAll(By.css('a.dropdown-item'));
+    expect(aElems[0].nativeElement.textContent).toBe('Manage Subjects');
+  });
+
+  it('should navigate to CMS page if Manage Subjects button is clicked', () => {
+    const location = TestBed.inject(Location);
+    const aElems = fixture.debugElement.queryAll(By.css('a.dropdown-item'));
+    aElems[0].nativeElement.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.path()).toBe('/cms');
+    });
+  });
 });
+
+class AuthServiceStub {}
+
+@Component({template: ''})
+export class DummyComponent { }

@@ -29,6 +29,10 @@ export class AppComponent {
     });
   }
 
+  manageSubjects() {
+    this.router.navigate(['/cms']);
+  }
+
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
