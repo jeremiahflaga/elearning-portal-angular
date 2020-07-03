@@ -63,7 +63,7 @@ describe('AppComponent', () => {
     expect(aElems[0].nativeElement.textContent).toBe('Manage Subjects');
   });
 
-  it('should navigate to CMS page if Manage Subjects button is clicked', () => {
+  it('should navigate to CMS page if Manage Subjects button is clicked', async(() => {
     const location = TestBed.inject(Location);
     const aElems = fixture.debugElement.queryAll(By.css('a.dropdown-item'));
     aElems[0].nativeElement.click();
@@ -71,7 +71,7 @@ describe('AppComponent', () => {
     fixture.whenStable().then(() => {
       expect(location.path()).toBe('/cms');
     });
-  });
+  }));
 });
 
 class AuthServiceStub {}
