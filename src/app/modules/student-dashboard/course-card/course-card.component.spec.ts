@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseCardComponent } from './course-card.component';
 import { By } from '@angular/platform-browser';
+import { Location } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component } from '@angular/core';
 
 describe('CourseCardComponent', () => {
   let component: CourseCardComponent;
@@ -9,6 +12,11 @@ describe('CourseCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: 'course-details/:id', component: DummyComponent }
+        ])
+      ],
       declarations: [ CourseCardComponent ]
     })
     .compileComponents();
@@ -44,4 +52,20 @@ describe('CourseCardComponent', () => {
     const imageElem = fixture.debugElement.query(By.css('img'));
     expect(imageElem.nativeElement.src).toContain('sample.png');
   });
+
+  it('should navigate to Course Details page if image is clicked', async(() => {
+    component.course = {_id: '111', title: '', description: '', image: '', modules: []};
+    fixture.detectChanges();
+    const location = TestBed.inject(Location);
+    const linkElem = fixture.debugElement.query(By.css('a'));
+    debugger;
+    linkElem.nativeElement.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.path()).toContain('/course-details/111');
+    });
+  }));
 });
+
+@Component({template: ''})
+export class DummyComponent { }
