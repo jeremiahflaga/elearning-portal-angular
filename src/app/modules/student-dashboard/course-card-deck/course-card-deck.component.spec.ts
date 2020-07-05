@@ -41,11 +41,18 @@ describe('CourseCardDeckComponent', () => {
     expect(courseCards.length).toBe(0);
   });
 
-  it('should show one list item when one course is given', () => {
+  it('should show one VISIBLE list item when one course is given', () => {
     testHostComponent.courses = [{_id: '1', title: '', description: '', image: '', modules: []}];
     testHostFixture.detectChanges();
-    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card'));
+    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card.visible'));
     expect(courseCards.length).toBe(1);
+  });
+
+  it('should show two INVISIBLE list item when one course is given', () => {
+    testHostComponent.courses = [{_id: '1', title: '', description: '', image: '', modules: []}];
+    testHostFixture.detectChanges();
+    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card.invisible'));
+    expect(courseCards.length).toBe(2);
   });
 
   it('should show five items when five courses are given', () => {
@@ -55,7 +62,7 @@ describe('CourseCardDeckComponent', () => {
     }
     testHostComponent.courses = courses;
     testHostFixture.detectChanges();
-    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card'));
+    const courseCards = testHostFixture.debugElement.queryAll(By.css('app-course-card.visible'));
     expect(courseCards.length).toBe(5);
   });
 
