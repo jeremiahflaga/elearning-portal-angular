@@ -79,6 +79,3 @@ describe('AppComponent', () => {
       toHaveBeenCalledWith(router.createUrlTree(['/cms']), { skipLocationChange: false });
   });
 });
-
-@Component({template: ''})
-export class DummyComponent { }
