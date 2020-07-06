@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 // Mocking localStorage: https://medium.com/@armno/til-mocking-localstorage-and-sessionstorage-in-angular-unit-tests-a765abdc9d87
 beforeEach(() => {
@@ -31,11 +31,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     authServiceMock = jasmine.createSpyObj('AuthService', ['']);
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes([
-          { path: 'cms', component: DummyComponent }
-        ])
-      ],
+      imports: [ RouterTestingModule ],
       declarations: [
         AppComponent
       ],
@@ -65,15 +61,23 @@ describe('AppComponent', () => {
     expect(aElems[0].nativeElement.textContent).toBe('Manage Subjects');
   });
 
-  it('should navigate to CMS page if Manage Subjects button is clicked', async(() => {
-    const location = TestBed.inject(Location);
-    const aElems = fixture.debugElement.queryAll(By.css('a.dropdown-item'));
-    aElems[0].nativeElement.click();
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(location.path()).toBe('/cms');
-    });
-  }));
+  // it('should navigate to CMS page if Manage Subjects button is clicked', async(() => {
+  //   const location = TestBed.inject(Location);
+  //   const aElems = fixture.debugElement.queryAll(By.css('a.dropdown-item'));
+  //   aElems[0].nativeElement.click();
+  //   fixture.detectChanges();
+  //   fixture.whenStable().then(() => {
+  //     expect(location.path()).toBe('/cms');
+  //   });
+  // }));
+  it('should navigate to CMS page if Manage Subjects button is clicked', () => {
+    const router = TestBed.inject(Router);
+    spyOn(router, 'navigateByUrl');
+    const aElems = fixture.debugElement.query(By.css('a.dropdown-item'));
+    aElems.nativeElement.click();
+    expect(router.navigateByUrl).
+      toHaveBeenCalledWith(router.createUrlTree(['/cms']), { skipLocationChange: false });
+  });
 });
 
 @Component({template: ''})
