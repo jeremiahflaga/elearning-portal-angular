@@ -9,13 +9,16 @@ import { By } from '@angular/platform-browser';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let courseServiceMock: any;
 
   beforeEach(async(() => {
+    courseServiceMock = jasmine.createSpyObj('CourseService', ['getCourses']);
+    courseServiceMock.getCourses.and.returnValue(of({ data: []}));
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports: [ HttpClientModule ],
       providers: [
-        { provide: CourseService, useClass: CourseServiceStub }
+        { provide: CourseService, useValue: courseServiceMock }
       ]
     })
     .compileComponents();
@@ -36,9 +39,3 @@ describe('DashboardComponent', () => {
     expect(h4Elem.nativeElement.textContent).toBe('All Courses');
   });
 });
-
-class CourseServiceStub {
-  getCourses(): Observable<any> {
-    return of({ data: []});
-  }
-}

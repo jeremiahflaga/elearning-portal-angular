@@ -26,8 +26,10 @@ beforeEach(() => {
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let authServiceMock: any;
 
   beforeEach(async(() => {
+    authServiceMock = jasmine.createSpyObj('AuthService', ['']);
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
@@ -38,7 +40,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        { provide: AuthService, useClass: AuthServiceStub }
+        { provide: AuthService, useValue: authServiceMock }
       ]
     }).compileComponents();
   }));
@@ -73,8 +75,6 @@ describe('AppComponent', () => {
     });
   }));
 });
-
-class AuthServiceStub {}
 
 @Component({template: ''})
 export class DummyComponent { }

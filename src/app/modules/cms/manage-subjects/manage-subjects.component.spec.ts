@@ -10,8 +10,11 @@ import { Observable, of } from 'rxjs';
 describe('ManageSubjectsComponent', () => {
   let component: ManageSubjectsComponent;
   let fixture: ComponentFixture<ManageSubjectsComponent>;
+  let courseServiceMock: any;
 
   beforeEach(async(() => {
+    courseServiceMock = jasmine.createSpyObj('CourseService', ['getSubjects']);
+    courseServiceMock.getSubjects.and.returnValue(of({ data: []}));
     TestBed.configureTestingModule({
       declarations: [ ManageSubjectsComponent ],
       imports: [
@@ -20,7 +23,7 @@ describe('ManageSubjectsComponent', () => {
         ReactiveFormsModule
       ],
       providers: [
-        { provide: CourseService, useClass: CourseServiceStub }
+        { provide: CourseService, useValue: courseServiceMock }
       ]
     })
     .compileComponents();
@@ -36,9 +39,3 @@ describe('ManageSubjectsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-class CourseServiceStub {
-  getSubjects(): Observable<any> {
-    return of({ data: []});
-  }
-}
