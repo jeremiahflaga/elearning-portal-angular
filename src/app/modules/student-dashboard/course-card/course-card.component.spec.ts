@@ -58,7 +58,6 @@ describe('CourseCardComponent', () => {
     fixture.detectChanges();
     const location = TestBed.inject(Location);
     const linkElem = fixture.debugElement.query(By.css('a'));
-    debugger;
     linkElem.nativeElement.click();
     fixture.detectChanges();
     fixture.whenStable().then(() => {

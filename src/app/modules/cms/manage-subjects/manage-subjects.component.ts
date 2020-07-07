@@ -13,6 +13,7 @@ export class ManageSubjectsComponent implements OnInit {
   subjectForm: FormGroup;
   submitted = false;
   subjectsData$: Observable<any>;
+  subjectsData: any;
   selectedSubjectIdToRemove: any;
 
   constructor(
