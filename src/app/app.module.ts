@@ -9,10 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { DashboardComponent } from './modules/student-dashboard/dashboard/dashboard.component';
-import { CourseCardComponent } from './modules/student-dashboard/course-card/course-card.component';
-import { CourseCardDeckComponent } from './modules/student-dashboard/course-card-deck/course-card-deck.component';
-import { CourseDetailsComponent } from './modules/student-dashboard/course-details/course-details.component';
+import { DashboardComponent } from './modules/student-dashboard/pages/dashboard/dashboard.component';
+import { CourseCardComponent } from './modules/student-dashboard/components/course-card/course-card.component';
+import { CourseCardDeckComponent } from './modules/student-dashboard/components/course-card-deck/course-card-deck.component';
+import { CourseDetailsComponent } from './modules/student-dashboard/pages/course-details/course-details.component';
 import { ManageSubjectsComponent } from './modules/cms/manage-subjects/manage-subjects.component';
 
 @NgModule({
