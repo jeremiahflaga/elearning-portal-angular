@@ -38,4 +38,8 @@ describe('DashboardComponent', () => {
     const h4Elem = fixture.debugElement.query(By.css('h4'));
     expect(h4Elem.nativeElement.textContent).toBe('All Courses');
   });
+
+  it('should call CourseService.getCourses() one time on ngOnInit()', () => {
+    expect(courseServiceMock.getCourses).toHaveBeenCalledTimes(1);
+  });
 });
